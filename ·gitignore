@@ -1,0 +1,22 @@
+# ---- LICENSED / CONFIDENTIAL — MUST NOT BE COMMITTED --------------------
+# FSAE TTC data is licensed; the fitted model file carries the coefficients.
+hoosier_16x75_10_R20.m
+B2356*.mat
+*TTC*
+*Calspan*
+
+# Team telemetry and internal parameter adjudications (hardpoints, setup).
+*.csv
+tbre25_vehicle_data*.m
+*.clf
+*.DAT
+
+# ---- MATLAB -------------------------------------------------------------
+*.asv
+*.mex*
+slprj/
+octave-workspace
+
+# ---- OS -----------------------------------------------------------------
+.DS_Store
+Thumbs.db
