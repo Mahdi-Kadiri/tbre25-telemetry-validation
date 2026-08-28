@@ -23,7 +23,7 @@ The accelerometer and GPS are the references, and both are independently anchore
 
 It is a pure scale error: stationary bias is 0.005 °/s, there is no clipping, and the ratio is flat across magnitude bins.
 
-![Channel validation](figures/channel_validation.png)
+![Channel validation](Channel_validation.png)
 
 *Left: measured lateral acceleration against the kinematic reference `V·r`, which involves no accelerometer. The steady-state subset (orange) lies on the gain-corrected line, not the 1:1. Right: yaw rate against GPS course rate — the fitted gain sits below the ideal 1:1 throughout, in both directions of turn, which is the signature of a scale error rather than an offset or a clipped channel.*
 
@@ -57,7 +57,7 @@ The single number is not the evidence. **The ratio is flat across the whole slip
 
 Including aerodynamic download matters: omitting it returns 0.627 and appears to agree with the documented factor to 6%. That agreement is an artifact of evaluating the tyre at too low a normal load. Both consistent aero source pairs are computed and neither is mixed with the other.
 
-![Belt-to-track validation](figures/belt_to_track.png)
+![Belt-to-track validation](Figure_2.png)
 
 *Left: the unscaled flat-trac model over-predicts measured rear axle force by roughly 40%, and a single constant scaling brings it onto the measurement across the whole range. Right: the per-bin ratio. Its **flatness** is the result — a friction-level error scales every point equally, whereas an error in the tyre fit, the load transfer split or the sideslip estimate would tilt or curve this line. The 2.19° point sits 6% high; that bin has the fewest samples and the widest speed spread.*
 
@@ -77,7 +77,7 @@ The two halves are **not equally trustworthy**, and the README says so:
 - **Rear: validated.** Model α_r matches telemetry-derived α_r to ~0.2° over 0.5–1.25 g.
 - **Front: prediction.** No measurable α_f exists on this car.
 
-![Sub-limit balance](figures/balance_sublimit.png)
+![Sub-limit balance](balance_sublimit.png)
 
 *Sub-limit balance across toe convention, aero source and front weight fraction. Every as-run configuration sits below zero; at zero toe (blue) the same model returns mild understeer above 1.2 g.*
 
@@ -100,7 +100,7 @@ Expressed as **axle utilisation** (required force ÷ axle capacity), across the 
 
 Sub-limit balance is weakly **oversteer-biased** (α_f − α_r = −0.20 to −0.26° at 1.0 g), and the **1° front toe-out is the mechanism, not a contributor**: at zero toe the same model returns mild understeer above 1.2 g. The balance is a setup choice, not a property of the car's mass and geometry.
 
-![Predicted vs measured limit](figures/limit_vs_measured.png)
+![Predicted vs measured limit](limit_vs_measured.png)
 
 *Predicted limit against measured sustained maxima. Points above the model lines are binding; points below are not evidence of agreement.*
 
@@ -119,7 +119,7 @@ An earlier version of this plot labelled envelope edges "front tyre limit" and "
 
 What the plot does support: the envelope **narrows 26%** between the 0.25–0.75 g and 1.25–1.75 g bands, consistent with tyres approaching lateral saturation leaving less capacity for yaw moment. Left–right asymmetry is **28% at Silverstone against 1.2% at Hockenheim** — same car, same sensors, which demonstrates the asymmetry is circuit layout rather than a car property.
 
-![Yaw acceleration envelope](figures/yaw_envelope.png)
+![Yaw acceleration envelope](Figure_1.png)
 
 *Corrected envelope. The right-hand axis converts yaw acceleration to yaw moment through `N = I_z·ṙ`, peaking near ±880 N·m. The boundary is flat-topped through the mid-range and tapers at both ends — the earlier four-point convex hull imposed straight edges the data does not have, which is part of why the axle labels looked plausible.*
 
@@ -154,12 +154,11 @@ validate_channels.m          sensor identity, scale, timing  — RUN FIRST
 belt_to_track_validation.m   tyre model vs measured rear axle force
 balance_analysis.m           balance and limiting axle by inversion
 plot_yaw_vs_lateral.m        corrected yaw acceleration envelope
-figures/
-  channel_validation.png     gyro scale error, two independent references
-  belt_to_track.png          flat-trac prediction vs measurement, ratio flat
-  balance_sublimit.png       alpha_f - alpha_r across the uncertainty space
-  limit_vs_measured.png      predicted limit vs measured sustained maxima
-  yaw_envelope.png           corrected envelope, 26% taper
+Channel_validation.png       gyro scale error, two independent references
+Figure_2.png                 flat-trac prediction vs measurement, ratio flat
+Figure_1.png                 corrected yaw envelope, 26% taper
+balance_sublimit.png         alpha_f - alpha_r across the uncertainty space
+limit_vs_measured.png        predicted limit vs measured sustained maxima
 ```
 
 Run order: `validate_channels` → `belt_to_track_validation` → `balance_analysis`. The last two require `hoosier_16x75_10_R20.m` (not redistributed — see below). MATLAB R2016b+; no toolbox dependencies.
