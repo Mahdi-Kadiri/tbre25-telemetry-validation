@@ -77,7 +77,7 @@ The two halves are **not equally trustworthy**, and the README says so:
 - **Rear: validated.** Model α_r matches telemetry-derived α_r to ~0.2° over 0.5–1.25 g.
 - **Front: prediction.** No measurable α_f exists on this car.
 
-![Sub-limit balance](balance_sublimit.png)
+![Sub-limit balance](Figure_3.png)
 
 *Sub-limit balance across toe convention, aero source and front weight fraction. Every as-run configuration sits below zero; at zero toe (blue) the same model returns mild understeer above 1.2 g.*
 
@@ -100,9 +100,9 @@ Expressed as **axle utilisation** (required force ÷ axle capacity), across the 
 
 Sub-limit balance is weakly **oversteer-biased** (α_f − α_r = −0.20 to −0.26° at 1.0 g), and the **1° front toe-out is the mechanism, not a contributor**: at zero toe the same model returns mild understeer above 1.2 g. The balance is a setup choice, not a property of the car's mass and geometry.
 
-![Predicted vs measured limit](limit_vs_measured.png)
+![Predicted vs measured limit](Figure_4.png)
 
-*Predicted limit against measured sustained maxima. Points above the model lines are binding; points below are not evidence of agreement.*
+*Predicted limit against measured sustained maxima. Points above the model lines are binding — the car demonstrably did it, so the model is too low by at least that much. Points below prove nothing, because the limit may simply not have been demanded in that band; the 16.2 m/s point at 0.95 g is a straight, not a cornering limit, and is plotted rather than hidden.*
 
 **Limit comparison is asymmetric evidence.** A measured sustained maximum is a *lower bound* on capability: bands where measurement falls below the model prove nothing, because the limit may not have been demanded. Only bands where measurement **exceeds** the model are binding. Three bands exceed the model, and the car demonstrably reached **1.589 g where the model predicts 1.464** — the model under-predicts by at least 9%. Matching the measured peak needs scaling ~0.62–0.64 against the 0.585 fitted at mid-range slip. Candidate cause: combined-slip contamination in endurance mid-range data suppressing measured force. **Open, unproven.**
 
@@ -157,8 +157,8 @@ plot_yaw_vs_lateral.m        corrected yaw acceleration envelope
 Channel_validation.png       gyro scale error, two independent references
 Figure_2.png                 flat-trac prediction vs measurement, ratio flat
 Figure_1.png                 corrected yaw envelope, 26% taper
-balance_sublimit.png         alpha_f - alpha_r across the uncertainty space
-limit_vs_measured.png        predicted limit vs measured sustained maxima
+Figure_3.png                 alpha_f - alpha_r across the uncertainty space
+Figure_4.png                 predicted limit vs measured sustained maxima
 ```
 
 Run order: `validate_channels` → `belt_to_track_validation` → `balance_analysis`. The last two require `hoosier_16x75_10_R20.m` (not redistributed — see below). MATLAB R2016b+; no toolbox dependencies.
